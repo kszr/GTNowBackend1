@@ -3,7 +3,7 @@ package com.gtnow.backend1;
 import com.google.inject.servlet.ServletModule;
 import com.googlecode.objectify.ObjectifyFilter;
 import com.googlecode.objectify.ObjectifyService;
-import com.gtnow.backend1.objects.User;
+import com.gtnow.backend1.entity.User;
 
 /**
  * This is another spot where you can set up the Jersey Filter if you wish.  I decided against it

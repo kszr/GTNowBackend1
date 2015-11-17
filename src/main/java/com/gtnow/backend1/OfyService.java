@@ -3,7 +3,7 @@ package com.gtnow.backend1;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
-import com.gtnow.backend1.objects.User;
+import com.gtnow.backend1.entity.User;
 
 public class OfyService {
     static {
