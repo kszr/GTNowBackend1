@@ -25,7 +25,7 @@
     </init-param>
     <init-param>
       <param-name>jersey.config.server.provider.packages</param-name>
-      <param-value>com.gtnow.backend1.webservices</param-value>
+      <param-value>com.gtnow.backend1.endpoint</param-value>
     </init-param>
   </filter>
   <filter-mapping>
