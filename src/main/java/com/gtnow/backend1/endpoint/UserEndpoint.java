@@ -6,6 +6,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -66,6 +67,16 @@ public class UserEndpoint {
     		User user) {
     	Objectify ofy = OfyService.ofy();
     	ofy.save().entity(user).now();
+    	return user;
+    }
+    
+    @DELETE
+    @Path("{userId}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public User deleteUser(@PathParam("userId") Long userId) {
+    	Objectify ofy = OfyService.ofy();
+    	User user = ofy.load().type(User.class).id(userId).now();
+    	ofy.delete().entity(user).now();
     	return user;
     }
     
