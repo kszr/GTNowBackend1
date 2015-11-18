@@ -3,11 +3,15 @@ package com.gtnow.backend1;
 import com.googlecode.objectify.Objectify;
 import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
+import com.gtnow.backend1.entity.Building;
 import com.gtnow.backend1.entity.User;
+
+import groovy.lang.Buildable;
 
 public class OfyService {
     static {
         ObjectifyService.register(User.class);
+        ObjectifyService.register(Building.class);
     }
 
     public static Objectify ofy() {

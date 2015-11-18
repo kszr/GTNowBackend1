@@ -88,7 +88,7 @@ public class UserEndpoint {
      * @return			The Location of the User.
      */
     @GET
-    @Path("{userId}")
+    @Path("{userId}/location")
     @Produces(MediaType.APPLICATION_JSON)
     public Location getUserLocation(@PathParam("userId") Long userId) {
     	Objectify ofy = OfyService.ofy();
