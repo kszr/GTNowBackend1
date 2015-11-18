@@ -14,10 +14,18 @@ apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'appengine'
 
+def appId = "gt-now-backend1" 
+def appEmail = "dewan.himanshu@gmail.com"
+def appengineVersion = "1.9.28"
+
 appengine {
     downloadSdk = true
+    httpPort = 8080
+    
     appcfg {
-        email = 'dewan.himanshu@gmail.com'
+        email = "${appEmail}"
+        noCookies = true
+        oauth2 = true
     }
     update {
         useJava7 = true
