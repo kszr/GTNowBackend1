@@ -7,7 +7,7 @@ public class Location {
 	private Double latitude;
 	private Double longitude;
 	
-	public Location() {
+	private Location() {
 		this.latitude = null;
 		this.longitude = null;
 	}
