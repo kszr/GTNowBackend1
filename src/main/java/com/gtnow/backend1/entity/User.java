@@ -31,11 +31,11 @@ public class User {
 
     @JsonCreator
     public User(
-    	@JsonProperty("UserId") Long id,
-    	@JsonProperty("Name") String name,
-    	@JsonProperty("GmailId") String gmailId,
-    	@JsonProperty("Latitude") Double latitude,
-    	@JsonProperty("Longitude") Double longitude
+    	@JsonProperty("userId") Long id,
+    	@JsonProperty("name") String name,
+    	@JsonProperty("gmailId") String gmailId,
+    	@JsonProperty("latitude") Double latitude,
+    	@JsonProperty("longitude") Double longitude
     ) {
         this.userId = id;
         this.name = name;

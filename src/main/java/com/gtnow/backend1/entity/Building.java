@@ -28,11 +28,11 @@ public class Building {
 	
 	@JsonCreator
 	public Building(
-			@JsonProperty("BuildingId") Long buildingId,
-			@JsonProperty("Name") String name,
-			@JsonProperty("Address") String address,
-			@JsonProperty("Latitude") Double latitude,
-			@JsonProperty("Longitude") Double longitude
+			@JsonProperty("buildingId") Long buildingId,
+			@JsonProperty("name") String name,
+			@JsonProperty("address") String address,
+			@JsonProperty("latitude") Double latitude,
+			@JsonProperty("longitude") Double longitude
 			) {
 		this.buildingId = buildingId;
 		this.name = name;
