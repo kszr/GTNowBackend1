@@ -14,7 +14,7 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Building {
 	@Id
-	private Long buildingId;
+	private String buildingId;
 	private String name;
 	private String address;
 	private Location location;
@@ -28,7 +28,7 @@ public class Building {
 	
 	@JsonCreator
 	public Building(
-			@JsonProperty("buildingId") Long buildingId,
+			@JsonProperty("buildingId") String buildingId,
 			@JsonProperty("name") String name,
 			@JsonProperty("address") String address,
 			@JsonProperty("latitude") Double latitude,
@@ -40,11 +40,11 @@ public class Building {
 		this.location = new Location(latitude, longitude);
 	}
 	
-	public Long getBuildingId() {
+	public String getBuildingId() {
 		return this.buildingId;
 	}
 	
-	public void setBuildingId(Long buildingId) {
+	public void setBuildingId(String buildingId) {
 		this.buildingId = buildingId;
 	}
 	

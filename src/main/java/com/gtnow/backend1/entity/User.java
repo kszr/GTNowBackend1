@@ -15,7 +15,7 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class User {
     @Id
-    private Long userId;
+    private String userId;
     private String name;
     private String gmailId;
     private Location location;
@@ -31,7 +31,7 @@ public class User {
 
     @JsonCreator
     public User(
-    	@JsonProperty("userId") Long id,
+    	@JsonProperty("userId") String id,
     	@JsonProperty("name") String name,
     	@JsonProperty("gmailId") String gmailId,
     	@JsonProperty("latitude") Double latitude,
@@ -43,11 +43,11 @@ public class User {
         this.location = new Location(latitude, longitude);
     }
 
-    public Long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 
