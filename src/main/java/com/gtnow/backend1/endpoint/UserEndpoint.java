@@ -63,7 +63,7 @@ public class UserEndpoint {
     @Path("{userId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@PathParam("userId") Long userId,
+    public User updateUser(@PathParam("userId") String userId,
     		User user) {
     	Objectify ofy = OfyService.ofy();
     	ofy.save().entity(user).now();
@@ -73,7 +73,7 @@ public class UserEndpoint {
     @DELETE
     @Path("{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User deleteUser(@PathParam("userId") Long userId) {
+    public User deleteUser(@PathParam("userId") String userId) {
     	Objectify ofy = OfyService.ofy();
     	User user = ofy.load().type(User.class).id(userId).now();
     	ofy.delete().entity(user).now();
@@ -88,7 +88,7 @@ public class UserEndpoint {
     @GET
     @Path("{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("userId") Long userId) {
+    public User getUser(@PathParam("userId") String userId) {
     	Objectify ofy = OfyService.ofy();
     	return ofy.load().type(User.class).id(userId).now();
     }
@@ -101,7 +101,7 @@ public class UserEndpoint {
     @GET
     @Path("{userId}/location")
     @Produces(MediaType.APPLICATION_JSON)
-    public Location getUserLocation(@PathParam("userId") Long userId) {
+    public Location getUserLocation(@PathParam("userId") String userId) {
     	Objectify ofy = OfyService.ofy();
     	User user = ofy.load().type(User.class).id(userId).now();
     	return user.getLocation();
@@ -111,7 +111,7 @@ public class UserEndpoint {
     @GET
     @Path("{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Group> getGroups(@PathParam("userId") Long userId) {
+    public List<Group> getGroups(@PathParam("userId") String userId) {
     	
     }
     */

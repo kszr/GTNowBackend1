@@ -42,7 +42,7 @@ public class BuildingEndpoint {
 	@GET
 	@Path("{buildingId}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Building getBuilding(@PathParam("buildingId") Long buildingId) {
+	public Building getBuilding(@PathParam("buildingId") String buildingId) {
 		Objectify ofy = OfyService.ofy();
 		return ofy.load().type(Building.class).id(buildingId).now();
 	}
