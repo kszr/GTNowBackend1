@@ -19,7 +19,7 @@ public class User {
     private String name;
     private String gmailId;
     private Location location;
-    private String locationReportTime;
+    private DateTime locationReportTime; //The time at which the User's location was last updated.
 
     private User() {
         this.id = null;
@@ -75,16 +75,12 @@ public class User {
     	this.location = location;
     }
 
-    public String getLocationReportTime() {
+    public DateTime getLocationReportTime() {
     	return this.locationReportTime;
     }
     
-    /**
-     * Doesn't take an argument: Instead it sets the User's locationReportTime to 
-     * the current time in milis. 
-     */
     public void updateLocationReportTime() {
-    	this.locationReportTime = ((Long) System.currentTimeMillis()).toString();
+    	this.locationReportTime = DateTime.now();
     }
 
     @Override
