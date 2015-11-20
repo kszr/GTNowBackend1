@@ -12,6 +12,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.google.appengine.repackaged.org.joda.time.DateTime;
 import com.googlecode.objectify.Key;
 import com.googlecode.objectify.Objectify;
 import com.gtnow.backend1.OfyService;
@@ -44,6 +45,8 @@ public class UserEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public User saveNewUser(User user) {
     	Objectify ofy = OfyService.ofy();
+    	if(user.getLocation() != null)
+    		user.updateLocationReportTime();
         Key<User> key = ofy.save().entity(user).now();
         return ofy.load().key(key).now();
     }
@@ -55,63 +58,65 @@ public class UserEndpoint {
      * but I think it makes more sense to have just one endpoint, especially
      * considering that we are passing in an updated User object anyway.
      * -A. C.)
-     * @param  userId	The userId of the User being updated.	
+     * @param  id	The id of the User being updated.	
      * @param  user		An updated version of the User.
      * @return			The updated User.
      */
     @PUT
-    @Path("{userId}")
+    @Path("{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(@PathParam("userId") String userId,
+    public User updateUser(@PathParam("id") String id,
     		User user) {
     	Objectify ofy = OfyService.ofy();
+    	if(user.getLocation() != null)
+    		user.updateLocationReportTime();
     	ofy.save().entity(user).now();
     	return user;
     }
     
     @DELETE
-    @Path("{userId}")
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User deleteUser(@PathParam("userId") String userId) {
+    public User deleteUser(@PathParam("id") String id) {
     	Objectify ofy = OfyService.ofy();
-    	User user = ofy.load().type(User.class).id(userId).now();
+    	User user = ofy.load().type(User.class).id(id).now();
     	ofy.delete().entity(user).now();
     	return user;
     }
     
     /**
-     * Retrieve a User from the datastore.
-     * @param  userId	The userId of the User being retrieved.
+     * Retrieve a User from the datastore.ow to 
+     * @param  id	The id of the User being retrieved.
      * @return			The retrieved User.
      */
     @GET
-    @Path("{userId}")
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User getUser(@PathParam("userId") String userId) {
+    public User getUser(@PathParam("id") String id) {
     	Objectify ofy = OfyService.ofy();
-    	return ofy.load().type(User.class).id(userId).now();
+    	return ofy.load().type(User.class).id(id).now();
     }
     
     /**
      * Get a User's location.
-     * @param  userId	The userId of the User being requested.
+     * @param  id	The id of the User being requested.
      * @return			The Location of the User.
      */
     @GET
-    @Path("{userId}/location")
+    @Path("{id}/location")
     @Produces(MediaType.APPLICATION_JSON)
-    public Location getUserLocation(@PathParam("userId") String userId) {
+    public Location getUserLocation(@PathParam("id") String id) {
     	Objectify ofy = OfyService.ofy();
-    	User user = ofy.load().type(User.class).id(userId).now();
+    	User user = ofy.load().type(User.class).id(id).now();
     	return user.getLocation();
     }
     //TODO
     /*
     @GET
-    @Path("{userId}")
+    @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Group> getGroups(@PathParam("userId") String userId) {
+    public List<Group> getGroups(@PathParam("id") String id) {
     	
     }
     */

@@ -35,15 +35,15 @@ public class BuildingEndpoint {
 	}
 	
 	/**
-	 * Retrieve a Building object from the datastore by buildingId.
-	 * @param  buildingId	The buildingId of the Building being retrieved.
+	 * Retrieve a Building object from the datastore by id.
+	 * @param  id	The id of the Building being retrieved.
 	 * @return				The retrieved Building.
 	 */
 	@GET
-	@Path("{buildingId}")
+	@Path("{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Building getBuilding(@PathParam("buildingId") String buildingId) {
+	public Building getBuilding(@PathParam("id") String id) {
 		Objectify ofy = OfyService.ofy();
-		return ofy.load().type(Building.class).id(buildingId).now();
+		return ofy.load().type(Building.class).id(id).now();
 	}
 }

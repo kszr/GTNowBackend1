@@ -14,13 +14,13 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Building {
 	@Id
-	private String buildingId;
+	private String id;
 	private String name;
 	private String address;
 	private Location location;
 	
 	private Building() {
-		this.buildingId = null;
+		this.id = null;
 		this.name = null;
 		this.address = null;
 		this.location = null;
@@ -28,24 +28,24 @@ public class Building {
 	
 	@JsonCreator
 	public Building(
-			@JsonProperty("buildingId") String buildingId,
+			@JsonProperty("id") String id,
 			@JsonProperty("name") String name,
 			@JsonProperty("address") String address,
 			@JsonProperty("latitude") Double latitude,
 			@JsonProperty("longitude") Double longitude
 			) {
-		this.buildingId = buildingId;
+		this.id = id;
 		this.name = name;
 		this.address = address;
 		this.location = new Location(latitude, longitude);
 	}
 	
-	public String getBuildingId() {
-		return this.buildingId;
+	public String getid() {
+		return this.id;
 	}
 	
-	public void setBuildingId(String buildingId) {
-		this.buildingId = buildingId;
+	public void setid(String id) {
+		this.id = id;
 	}
 	
 	public String getName() {
@@ -77,13 +77,13 @@ public class Building {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Building building = (Building) o;
-        return Objects.equal(buildingId, building.buildingId) &&
+        return Objects.equal(id, building.id) &&
             Objects.equal(name, building.name) &&
             Objects.equal(address, building.address);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(buildingId, name, address);
+        return Objects.hashCode(id, name, address);
     }
 }

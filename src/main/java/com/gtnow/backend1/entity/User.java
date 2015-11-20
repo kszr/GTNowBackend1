@@ -15,40 +15,40 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class User {
     @Id
-    private String userId;
+    private String id;
     private String name;
     private String gmailId;
     private Location location;
-    private DateTime timeStampLastUpdated;
+    private String locationReportTime;
 
     private User() {
-        this.userId = null;
+        this.id = null;
         this.name = null;
         this.gmailId = null;
         this.location = null;
-        this.timeStampLastUpdated = null;
+        this.locationReportTime = null;
     }
 
     @JsonCreator
     public User(
-    	@JsonProperty("userId") String id,
+    	@JsonProperty("id") String id,
     	@JsonProperty("name") String name,
     	@JsonProperty("gmailId") String gmailId,
     	@JsonProperty("latitude") Double latitude,
     	@JsonProperty("longitude") Double longitude
     ) {
-        this.userId = id;
+        this.id = id;
         this.name = name;
         this.gmailId = gmailId;
         this.location = new Location(latitude, longitude);
     }
 
-    public String getUserId() {
-        return userId;
+    public String getid() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setid(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -75,18 +75,30 @@ public class User {
     	this.location = location;
     }
 
+    public String getLocationReportTime() {
+    	return this.locationReportTime;
+    }
+    
+    /**
+     * Doesn't take an argument: Instead it sets the User's locationReportTime to 
+     * the current time in milis. 
+     */
+    public void updateLocationReportTime() {
+    	this.locationReportTime = ((Long) System.currentTimeMillis()).toString();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         User user = (User) o;
-        return Objects.equal(userId, user.userId) &&
+        return Objects.equal(id, user.id) &&
             Objects.equal(name, user.name) &&
             Objects.equal(gmailId, user.gmailId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(userId, name, gmailId);
+        return Objects.hashCode(id, name, gmailId);
     }
 }
