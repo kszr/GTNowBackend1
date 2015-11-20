@@ -67,27 +67,37 @@ public class UserEndpoint {
     public User updateUser(@PathParam("id") String id,
     		User user) {
     	Objectify ofy = OfyService.ofy();
-    	user = updateLocation(user, ofy);
+    	updateUser(user, ofy);
     	ofy.save().entity(user).now();
     	return user;
     }
     
     /**
-     * A private helper function that updates a User's locationReportTime,
-     * if necessary, prior to putting it in the datastore.
-     * @param  user	The new or updated User
+     * A private helper function that makes sure that an existing User's attributes do not
+     * get erased, if the PUT request does not contain all the JsonProperties that define
+     * a User. This function is also responsible for updating the value of locationReportTime,
+     * if the PUT request happens to come with values for location.
+     * @param  user	The updated version of the User
      * @param  ofy  The Objectify instance
-     * @return		The User with locationReportTime possibly updated
      */
-    private static User updateLocation(User user, Objectify ofy) {
+    private static void updateUser(User user, Objectify ofy) {
+    	//Retrieving the existing version of the User from the datastore.
     	User user2 = ofy.load().type(User.class).id(user.getid()).now();
+
+    	//Updating the User's location and/or locationReportTime.
     	if(user.getLocation() != null) {
     		user.setLocationReportTime((new DateTime()).toString());
     	} else if(user2 != null) {
     		user.setLocationReportTime(user2.getLocationReportTime());
     		user.setLocation(user2.getLocation());
     	}
-    	return user;
+
+    	//Updating the User's name.
+    	if(user.getName() == null)
+    		user.setName(user2.getName());
+    	//Updating the User's gmailId.
+    	if(user.getGmailId() == null)
+    		user.setGmailId(user2.getGmailId());
     }
     
     /**
