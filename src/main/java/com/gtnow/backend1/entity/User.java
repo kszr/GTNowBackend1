@@ -81,7 +81,7 @@ public class User {
     }
     
     public void updateLocationReportTime() {
-    	this.locationReportTime = DateTime.now();
+    	this.locationReportTime = new DateTime();
     }
 
     @Override
