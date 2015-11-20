@@ -42,7 +42,7 @@ public class User {
         this.name = name;
         this.gmailId = gmailId;
         this.location = new Location(latitude, longitude);
-        this.updateLocationReportTime();
+        this.setLocationReportTime((new DateTime()).toString());
     }
 
     public String getid() {
