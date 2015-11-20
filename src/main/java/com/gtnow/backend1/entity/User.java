@@ -81,6 +81,10 @@ public class User {
     	return this.locationReportTime;
     }
     
+    public void setLocationReportTime(String locationReportTime) {
+    	this.locationReportTime = locationReportTime;
+    }
+    
     public void updateLocationReportTime() {
     	this.locationReportTime = (new DateTime()).toString();
     }

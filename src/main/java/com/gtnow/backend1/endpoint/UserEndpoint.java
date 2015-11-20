@@ -45,8 +45,6 @@ public class UserEndpoint {
     @Produces(MediaType.APPLICATION_JSON)
     public User saveNewUser(User user) {
     	Objectify ofy = OfyService.ofy();
-    	if(user.getLocation() != null)
-    		user.updateLocationReportTime();
         Key<User> key = ofy.save().entity(user).now();
         return ofy.load().key(key).now();
     }
@@ -69,9 +67,26 @@ public class UserEndpoint {
     public User updateUser(@PathParam("id") String id,
     		User user) {
     	Objectify ofy = OfyService.ofy();
-    	if(user.getLocation() != null)
-    		user.updateLocationReportTime();
+    	user = updateLocation(user, ofy);
     	ofy.save().entity(user).now();
+    	return user;
+    }
+    
+    /**
+     * A private helper function that updates a User's locationReportTime,
+     * if necessary, prior to putting it in the datastore.
+     * @param  user	The new or updated User
+     * @param  ofy  The Objectify instance
+     * @return		The User with locationReportTime possibly updated
+     */
+    private static User updateLocation(User user, Objectify ofy) {
+    	User user2 = ofy.load().type(User.class).id(user.getid()).now();
+    	if(user.getLocation() != null) {
+    		user.updateLocationReportTime();
+    	} else if(user2 != null) {
+    		user.setLocationReportTime(user2.getLocationReportTime());
+    		user.setLocation(user2.getLocation());
+    	}
     	return user;
     }
     
