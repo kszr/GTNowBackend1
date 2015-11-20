@@ -24,6 +24,18 @@ import com.gtnow.backend1.object.Location;
 @Path("/api/buildings")
 public class BuildingEndpoint {
 	/**
+	 * A TEMPORARY endpoint that creates a new building.
+	 */
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Building createBuilding(Building building) {
+		Objectify ofy = OfyService.ofy();
+        Key<Building> key = ofy.save().entity(building).now();
+        return ofy.load().key(key).now();
+	}
+
+	/**
 	 * Get all the Buildings in the datastore.
 	 * @return A List of all Buildings in the datastore.
 	 */
