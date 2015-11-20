@@ -19,7 +19,7 @@ public class User {
     private String name;
     private String gmailId;
     private Location location;
-    private DateTime locationReportTime; //The time at which the User's location was last updated.
+    private String locationReportTime; //The time at which the User's location was last updated.
 
     private User() {
         this.id = null;
@@ -35,7 +35,8 @@ public class User {
     	@JsonProperty("name") String name,
     	@JsonProperty("gmailId") String gmailId,
     	@JsonProperty("latitude") Double latitude,
-    	@JsonProperty("longitude") Double longitude
+    	@JsonProperty("longitude") Double longitude,
+    	@JsonProperty("locationReportTime") String locationReportTime
     ) {
         this.id = id;
         this.name = name;
@@ -76,12 +77,12 @@ public class User {
     	this.location = location;
     }
 
-    public DateTime getLocationReportTime() {
+    public String getLocationReportTime() {
     	return this.locationReportTime;
     }
     
     public void updateLocationReportTime() {
-    	this.locationReportTime = new DateTime();
+    	this.locationReportTime = (new DateTime()).toString();
     }
 
     @Override
