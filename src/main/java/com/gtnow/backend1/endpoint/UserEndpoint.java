@@ -82,7 +82,7 @@ public class UserEndpoint {
     private static User updateLocation(User user, Objectify ofy) {
     	User user2 = ofy.load().type(User.class).id(user.getid()).now();
     	if(user.getLocation() != null) {
-    		user.updateLocationReportTime();
+    		user.setLocationReportTime((new DateTime()).toString());
     	} else if(user2 != null) {
     		user.setLocationReportTime(user2.getLocationReportTime());
     		user.setLocation(user2.getLocation());
@@ -90,6 +90,11 @@ public class UserEndpoint {
     	return user;
     }
     
+    /**
+     * Delete a user from the datastore.
+     * @param  id	The id of the User being deleted.
+     * @return		The User that has just been deleted.
+     */
     @DELETE
     @Path("{id}")
     @Produces(MediaType.APPLICATION_JSON)
@@ -101,9 +106,9 @@ public class UserEndpoint {
     }
     
     /**
-     * Retrieve a User from the datastore.ow to 
+     * Retrieve a User from the datastore. 
      * @param  id	The id of the User being retrieved.
-     * @return			The retrieved User.
+     * @return 		The retrieved User.
      */
     @GET
     @Path("{id}")

@@ -84,10 +84,6 @@ public class User {
     public void setLocationReportTime(String locationReportTime) {
     	this.locationReportTime = locationReportTime;
     }
-    
-    public void updateLocationReportTime() {
-    	this.locationReportTime = (new DateTime()).toString();
-    }
 
     @Override
     public boolean equals(Object o) {
