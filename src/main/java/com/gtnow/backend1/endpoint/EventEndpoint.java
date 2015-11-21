@@ -76,7 +76,7 @@ public class EventEndpoint {
 	public Event deleteEvent(@PathParam("eventId") Long eventId) {
 		Objectify ofy = OfyService.ofy();
 		Event event = ofy.load().type(Event.class).id(eventId).now();
-        ofy.delete.entity(event).now();
+        ofy.delete().entity(event).now();
         return event;
 	}
 }

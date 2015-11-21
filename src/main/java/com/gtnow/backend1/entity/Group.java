@@ -1,12 +1,13 @@
-package entity;
+package com.gtnow.backend1.entity;
 
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
-
-import java.util.Date;
+import com.gtnow.backend1.object.Location;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.appengine.repackaged.org.joda.time.DateTime;
+import com.google.common.base.Objects;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
 /**
  * A class representing a Group entity.
@@ -17,7 +18,7 @@ public class Group {
 	private Long groupId;
 	private String gtIdCreator;
 	private String name;
-	private Date createTime;
+	private DateTime createTime;
 	private int intervalExpire;
 	
 	private Group() {
@@ -73,7 +74,7 @@ public class Group {
 		this.name = name;
 	}
 	
-	public Date getCreateTime() {
+	public DateTime getCreateTime() {
 		return this.createTime;
 	}
 	

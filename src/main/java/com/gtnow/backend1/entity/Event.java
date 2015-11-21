@@ -1,11 +1,13 @@
-package entity;
+package com.gtnow.backend1.entity;
 
-import com.googlecode.objectify.annotation.Entity;
-import com.googlecode.objectify.annotation.Id;
+import com.gtnow.backend1.object.Location;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.joda.time.DateTime;
+import com.google.appengine.repackaged.org.joda.time.DateTime;
+import com.google.common.base.Objects;
+import com.googlecode.objectify.annotation.Entity;
+import com.googlecode.objectify.annotation.Id;
 
 @Entity
 public class Event {

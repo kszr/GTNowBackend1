@@ -5,6 +5,10 @@ import com.googlecode.objectify.ObjectifyFactory;
 import com.googlecode.objectify.ObjectifyService;
 import com.gtnow.backend1.entity.Building;
 import com.gtnow.backend1.entity.User;
+import com.gtnow.backend1.entity.Event;
+import com.gtnow.backend1.entity.Group;
+import com.gtnow.backend1.entity.Invitation;
+import com.gtnow.backend1.entity.EventSchedule;
 
 public class OfyService {
     static {
