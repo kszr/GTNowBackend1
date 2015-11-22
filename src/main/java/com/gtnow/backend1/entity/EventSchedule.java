@@ -15,14 +15,14 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class EventSchedule {
 	@Id
-	private Long eventScheduleId;
-	private Long userId; //The user to whom this EventSchedule belongs.
+	private String eventScheduleId;
+	private String userId; //The user to whom this EventSchedule beStrings.
 	private String name; //Name of the EventSchedule.
 	private String description;
 	private String daysOfWeek; //Comma-separated list
 	private DateTime startTime; //Time and date of first event.
 	private DateTime endTime; //Time and date of last event.
-	private Long buildingId;
+	private String buildingId;
 	private DateTime endDate; //The date on which this recurring event ends.
 	
 	private EventSchedule() {
@@ -39,14 +39,14 @@ public class EventSchedule {
 	
 	@JsonCreator
 	public EventSchedule(
-			@JsonProperty("eventScheduleId") Long eventScheduleId,
-			@JsonProperty("userId") Long userId,
+			@JsonProperty("eventScheduleId") String eventScheduleId,
+			@JsonProperty("userId") String userId,
 			@JsonProperty("name") String name,
 			@JsonProperty("description") String description,
 			@JsonProperty("daysOfWeek") String daysOfWeek,
 			@JsonProperty("startTime") DateTime startTime,
 			@JsonProperty("endTime") DateTime endTime,
-			@JsonProperty("buildingId") Long buildingId,
+			@JsonProperty("buildingId") String buildingId,
 			@JsonProperty("endDate") DateTime endDate
 			) {
 		this.eventScheduleId = eventScheduleId;
@@ -60,19 +60,19 @@ public class EventSchedule {
 		this.endDate = endDate;
 	}
 	
-	public Long getEventScheduleId() {
+	public String getEventScheduleId() {
 		return this.eventScheduleId;
 	}
 	
-	public void setEventScheduleId(Long eventScheduleId) {
+	public void setEventScheduleId(String eventScheduleId) {
 		this.eventScheduleId = eventScheduleId;
 	}
 	
-	public Long getUserId() {
+	public String getUserId() {
 		return this.userId;
 	}
 	
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	
@@ -116,11 +116,11 @@ public class EventSchedule {
 		this.endTime = endTime;
 	}
 	
-	public Long getBuildingId() {
+	public String getBuildingId() {
 		return this.buildingId;
 	}
 	
-	public void setBuildingId(Long buildingId) {
+	public void setBuildingId(String buildingId) {
 		this.buildingId = buildingId;
 	}
 	

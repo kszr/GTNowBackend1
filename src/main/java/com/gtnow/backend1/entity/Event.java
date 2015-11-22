@@ -12,14 +12,14 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Event {
 	@Id
-	private Long eventId;
-	private Long userId;
-	private Long eventScheduleId;
+	private String eventId;
+	private String userId;
+	private String eventScheduleId;
 	private String name;
 	private String description;
 	private DateTime startTime;
 	private DateTime endTime;
-	private Long buildingId;
+	private String buildingId;
 	private boolean notified;
 	private boolean active;
 	
@@ -38,14 +38,14 @@ public class Event {
 	
 	@JsonCreator
 	public Event(
-			@JsonProperty("eventId") Long eventId,
-			@JsonProperty("userId") Long userId,
-			@JsonProperty("eventScheduleId") Long eventScheduleId,
+			@JsonProperty("eventId") String eventId,
+			@JsonProperty("userId") String userId,
+			@JsonProperty("eventScheduleId") String eventScheduleId,
 			@JsonProperty("name") String name,
 			@JsonProperty("description") String description,
 			@JsonProperty("startTime") DateTime startTime,
 			@JsonProperty("endTime") DateTime endTime,
-			@JsonProperty("buildingId") Long buildingId
+			@JsonProperty("buildingId") String buildingId
 			) {
 		this.eventId = eventId;
 		this.userId = userId;
@@ -60,27 +60,27 @@ public class Event {
 		this.active = true;
 	}
 	
-	public Long getEventId() {
+	public String getEventId() {
 		return this.eventId;
 	}
 	
-	public void setEventId(Long eventId) {
+	public void setEventId(String eventId) {
 		this.eventId = eventId;
 	}
 	
-	public Long getUserId() {
+	public String getUserId() {
 		return this.userId;
 	}
 	
-	public void setUserId(Long userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 	
-	public Long getEventScheduleId() {
+	public String getEventScheduleId() {
 		return this.eventScheduleId;
 	}
 	
-	public void setEventScheduleId(Long eventScheduleId) {
+	public void setEventScheduleId(String eventScheduleId) {
 		this.eventScheduleId = eventScheduleId;
 	}
 	
@@ -116,11 +116,11 @@ public class Event {
 		this.endTime = endTime;
 	}
 	
-	public Long getBuildingId() {
+	public String getBuildingId() {
 		return this.buildingId;
 	}
 	
-	public void setBuildingId(Long buildingId) {
+	public void setBuildingId(String buildingId) {
 		this.buildingId = buildingId;
 	}
 	

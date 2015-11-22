@@ -15,7 +15,7 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Invitation {
 	@Id
-	private Long invitationId;
+	private String invitationId;
 	private User recipient; //Recipient of the Invitation.
 	private User invitedBy; //Originator of the Invitation.
 	private Group group;	//The Group this Invitation concerns.
@@ -52,7 +52,7 @@ public class Invitation {
 	 */
 	@JsonCreator
 	public Invitation(
-			@JsonProperty("invitationId") Long invitationId,
+			@JsonProperty("invitationId") String invitationId,
 			@JsonProperty("recipient") User recipient,
 			@JsonProperty("invitedBy") User invitedBy,
 			@JsonProperty("group") Group group
@@ -66,11 +66,11 @@ public class Invitation {
 		this.flag = 0;		
 	}
 	
-	public Long getInvitationId() {
+	public String getInvitationId() {
 		return this.invitationId;
 	}
 	
-	public void setInvitationId(Long invitationId) {
+	public void setInvitationId(String invitationId) {
 		this.invitationId = invitationId;
 	}
 	

@@ -15,7 +15,7 @@ import com.googlecode.objectify.annotation.Id;
 @Entity
 public class Group {
 	@Id
-	private Long groupId;
+	private String groupId;
 	private String gtIdCreator;
 	private String name;
 	private DateTime createTime;
@@ -40,7 +40,7 @@ public class Group {
 	 */
 	@JsonCreator
 	public Group(
-			@JsonProperty("groupId") Long groupId,
+			@JsonProperty("groupId") String groupId,
 			@JsonProperty("gtIdCreator") String gtIdCreator,
 			@JsonProperty("name") String name,
 			@JsonProperty("intervalExpire") int intervalExpire) {
@@ -50,11 +50,11 @@ public class Group {
 		this.intervalExpire = intervalExpire;
 	}
 	
-	public Long getGroupId() {
+	public String getGroupId() {
 		return this.groupId;
 	}
 	
-	public void setGroupId(Long groupId) {
+	public void setGroupId(String groupId) {
 		this.groupId = groupId;
 	}
 	
