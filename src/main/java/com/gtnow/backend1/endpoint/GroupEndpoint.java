@@ -48,7 +48,7 @@ public class GroupEndpoint {
     @GET
     @Path("{groupId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Group getGroupInformation(@PathParam("groupId") Long groupId) {
+    public Group getGroupInformation(@PathParam("groupId") String groupId) {
         Objectify ofy = OfyService.ofy();
     	return ofy.load().type(Group.class).id(groupId).now();
     }
@@ -63,7 +63,7 @@ public class GroupEndpoint {
     @Path("{groupId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Group updateGroupInformation(@PathParam("groupId") Long groupId, Group group) {
+    public Group updateGroupInformation(@PathParam("groupId") String groupId, Group group) {
         Objectify ofy = OfyService.ofy();
         Key<Group> key = ofy.save().entity(group).now();
         return ofy.load().key(key).now();
@@ -79,8 +79,9 @@ public class GroupEndpoint {
     @GET
     @Path("{groupId}/users")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<User> getAllGroupMembers(@PathParam("groupId") Long groupId) {
-    	return null;
+    public List<User> getAllGroupMembers(@PathParam("groupId") String groupId) {
+        Objectify ofy = OfyService.ofy();
+    	return ofy.load().type(Group.class).id(groupId).type(User.class).list();
     }
     
     /**
@@ -94,8 +95,11 @@ public class GroupEndpoint {
     @DELETE
     @Path("{groupId}/{userId}")
     @Produces(MediaType.APPLICATION_JSON)
-    public User deleteGroupMember(@PathParam("groupId") Long groupId, @PathParam("userId") String userId) {
-    	return null;
+    public User deleteGroupMember(@PathParam("groupId") String groupId, @PathParam("userId") String userId) {
+        Objectify ofy = OfyService.ofy();
+        User user = ofy.load().type(Group.class).id(groupId).type(User.class).id(userId).now();
+        ofy.delete().entity(user).now();
+    	return user;
     }
     
     /**
@@ -110,7 +114,9 @@ public class GroupEndpoint {
     @Path("{groupId}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public User addUserToGroup(@PathParam("groupId") Long groupId, User user) {
-    	return null;
+    public User addUserToGroup(@PathParam("groupId") String groupId, User user) {
+    	Objectify ofy = OfyService.ofy();
+        ofy.load().type(Group.class).id(groupId).save().entity(user).now();
+        return user;
     }
 }
