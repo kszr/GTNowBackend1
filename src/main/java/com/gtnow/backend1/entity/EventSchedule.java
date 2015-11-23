@@ -26,14 +26,14 @@ public class EventSchedule {
 	private DateTime endDate; //The date on which this recurring event ends.
 	
 	private EventSchedule() {
-		this.eventScheduleId = 0L;
-		this.userId = 0L;
+		this.eventScheduleId = null;
+		this.userId = null;
 		this.name = null;
 		this.description = null;
 		this.daysOfWeek = null;
 		this.startTime = null;
 		this.endTime = null;
-		this.buildingId = 0L;
+		this.buildingId = null;
 		this.endDate = null;
 	}
 	

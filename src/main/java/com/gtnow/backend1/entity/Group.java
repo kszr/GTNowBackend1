@@ -22,7 +22,7 @@ public class Group {
 	private int intervalExpire;
 	
 	private Group() {
-		this.groupId = 0L;
+		this.groupId = null;
 		this.gtIdCreator = null;
 		this.name = null;
 		this.createTime = null;

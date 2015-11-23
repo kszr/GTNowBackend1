@@ -24,14 +24,14 @@ public class Event {
 	private boolean active;
 	
 	private Event() {
-		this.eventId = 0L;
-		this.userId = 0L;
-		this.eventScheduleId = 0L;
+		this.eventId = null;
+		this.userId = null;
+		this.eventScheduleId = null;
 		this.name = null;
 		this.description = null;
 		this.startTime = null;
 		this.endTime = null;
-		this.buildingId = 0L;
+		this.buildingId = null;
 		this.notified = false;
 		this.active = false;
 	}

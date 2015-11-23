@@ -32,7 +32,7 @@ public class Invitation {
 	 */
 	
 	private Invitation() {
-		this.invitationId = 0L;
+		this.invitationId = null;
 		this.recipient = null;
 		this.invitedBy = null;
 		this.group = null;
